@@ -6,12 +6,9 @@
  */
 
 export function sortStrings(arr, param = 'asc') {
-  let sortedArray = [...arr];
-  if (param === 'asc') {
-    return sortedArray.sort((a, b) => a.localeCompare((b), ['ru', 'en'], {caseFirst: 'upper'})
-    );
-  }
-  if (param === 'desc') {
-    return sortedArray.sort((a, b) => a.localeCompare((b), ['ru', 'en'])).reverse();
-  }
+  const sortedArray = [...arr];
+  const getCompareFunc = (a, b, options) => a.localeCompare((b), ['ru', 'en'], options);
+  const getSortedArray = (options) => (a, b) => (options ? 1 : -1) * getCompareFunc(a, b, options);
+
+  return sortedArray.sort(getSortedArray(param === 'asc' && {caseFirst: 'upper'}));
 }
