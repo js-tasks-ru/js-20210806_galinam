@@ -6,8 +6,5 @@
 
 export function createGetter(path) {
   const fields = path.split('.');
-  return function (Obj) {
-    const findField = (field, i) => (field === undefined) ? field : field[i];
-    return fields.reduce(findField, Obj);
-  };
+  return (Obj) => fields.reduce((field, i) => field && field[i], Obj);
 }
