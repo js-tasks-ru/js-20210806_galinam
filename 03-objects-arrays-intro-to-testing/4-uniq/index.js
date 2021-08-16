@@ -4,5 +4,12 @@
  * @returns {*[]} - the new array with uniq values
  */
 export function uniq(arr) {
-  return [...arr].reduce((item, elem) => (item.includes(elem) || item.push(elem), item), []);
+  return [...arr].reduce(
+    (previousValue, item) => {
+      if (!previousValue.includes(item)) {
+        previousValue.push(item);
+      }
+      return previousValue;
+    },
+    []);
 }
