@@ -6,9 +6,11 @@
  */
 export function trimSymbols(string, size) {
   let counter = 0;
-  return [...string].reduce(
-    (previousValue, item, index, array) => {
-      counter = (!index || item === array[index - 1]) ? counter + 1 : 1;
-      return counter <= size ? previousValue + item : previousValue;
-    }, '');
+  return size >= 0
+    ? [...string].reduce(
+      (previousValue, item, index, array) => {
+        counter = (!index || item === array[index - 1]) ? counter + 1 : 1;
+        return counter <= size ? previousValue + item : previousValue;
+      }, '')
+    : string;
 }
