@@ -6,5 +6,5 @@
 
 export function createGetter(path) {
   const fields = path.split('.');
-  return (Obj) => fields.reduce((field, i) => field && field[i], Obj);
+  return (obj) => fields.reduce((field, i) => field && field[i], obj);
 }
