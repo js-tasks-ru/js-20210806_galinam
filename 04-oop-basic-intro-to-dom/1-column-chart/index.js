@@ -1,4 +1,5 @@
 export default class ColumnChart {
+
   element;
   dataElements = {};
   chartHeight = 50;
