@@ -41,7 +41,7 @@ export default class ColumnChart {
              ${this.getLink()}
          </div>
          <div class="column-chart__container">
-           <div data-element="value" class = "column-chart__header">
+           <div class = "column-chart__header">
              ${this.formatHeading ? this.formatHeading(this.value) : this.value}
            </div>
            <div data-element="data" class="column-chart__chart" style="--value: ${this.chartHeight}">
@@ -62,16 +62,12 @@ export default class ColumnChart {
   }
 
   getDataElements(element) {
-    const elements = element.querySelectorAll('[data-element]');
-    return [...elements].reduce((acc, dataElement) => {
-      acc[dataElement.dataset.element] = dataElement;
-      return acc;
-    }, {});
+    const elements = element.querySelectorAll('[data-element="data"]');
+    return elements[0];
   }
 
   update(data) {
-    // this.dataElements.value.textContent = this.formatHeading ? this.formatHeading(value) : value;
-    this.dataElements.data.innerHTML = this.getColumn(data);
+    this.dataElements.innerHTML = this.getColumn(data);
   }
 
   remove() {
